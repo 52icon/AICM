@@ -38,14 +38,14 @@ read installdy
 case $installdy in
 	c)
 	   crontab_installer
-       wget -c http://origin.evec.cc/github/AICM/AICM_Client.sh -P /usr/bin/AICM/AICM_Client.sh
-       wget -c http://origin.evec.cc/github/AICM/AICM.cfg -P /usr/bin/AICM/AICM.cfg
+       wget --no-check-certificate https://raw.githubusercontent.com/EVECloud/AICM/master/AICM_Client.sh -P /usr/bin/AICM/AICM_Client.sh
+       wget --no-check-certificate https://raw.githubusercontent.com/EVECloud/AICM/master/AICM.cfg -P /usr/bin/AICM/AICM.cfg
 	   set_time_u
 	   lastdy
 	   ;;
 	s)
 	   crontab_installer
-	   wget -c http://origin.evec.cc/github/AICM/AICM_Server.sh -P /usr/bin/AICM/AICM_Server.sh
+	   wget -c wget --no-check-certificate https://raw.githubusercontent.com/EVECloud/AICM/master/AICM_Server.sh -P /usr/bin/AICM/AICM_Server.sh
 	   set_time_d
 	   lastdy
 	   ;;
