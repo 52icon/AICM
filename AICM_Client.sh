@@ -6,12 +6,21 @@ source /usr/bin/AICM/AICM.cfg
 function BACKUPSQLBYDENGYU () {
 mysqldump -u $sqluser -p$sqlpasswd $sqlname > $DengYu.sql
 mv $DengYu.sql $webdir/$DengYu.sql
+if [[ $targzpasswdonoffpack == "yes" ]]; then
+	tar -czf - $webdir/$DengYu.sql | openssl aes-256-cfb8 -salt -k $targzpasswd -out $webdir/$DengYu.sql.tar.gz
+	else
+	tar czf $webdir/$DengYu.sql.tar.gz $webdir/$DengYu.sql	
+fi
 sleep $sleeptime
-rm -f $webdir/$DengYu.sql
+rm -f $webdir/$DengYu.sql.tar.gz
 }
 
 function BACKUPFILEBYDENGYU () {
-tar czf $filedir/$DengYu.tar.gz $filedir
+if [[ $targzpasswdonoffpack == "yes" ]]; then
+	tar -czf - $filedir/$DengYu.tar.gz | openssl aes-256-cfb8 -salt -k $targzpasswd -out $DengYu.tar.gz
+	else
+	tar czf $filedir/$DengYu.tar.gz $filedir
+fi
 mv $DengYu.tar.gz $webdir/$DengYu.tar.gz
 sleep $sleeptime
 rm -f $webdir/$DengYu.tar.gz
