@@ -14,7 +14,7 @@ echo -e "请输入客户端开始压缩时间"
 echo -e "依照Crontab的表达式"
 echo -e "不懂请去www.evec.cc查看教程" 
 read time_u
-echo -e "$time_u root /usr/bin/AICM/AICM_Client.sh" >> /etc/crontab
+echo -e "$time_u root /usr/bin/AICM/AICM_Client.sh >> /usr/bin/AICM/AICM.log" >> /etc/crontab
 }
 
 function set_time_d () {
@@ -23,7 +23,7 @@ echo -e "依照Crontab的表达式"
 echo -e "不懂请去www.evec.cc查看教程"
 echo -e "推荐间隔1个小时，建议在服务器上测试压缩时间"
 read time_d
-echo -e "$time_d root /usr/bin/AICM/AICM_Server.sh" >> /etc/crontab
+echo -e "$time_d root /usr/bin/AICM/AICM_Server.sh >> /usr/bin/AICM/AICM.log" >> /etc/crontab
 }
 
 function set_dl () {
