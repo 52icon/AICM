@@ -32,7 +32,18 @@ echo -e "仅支持单条添加"
 echo -e "目前仅支持单机备份"
 read dls
 echo -e "$dls/" >> /usr/bin/AICM/AICM_DL.txt
+}
 
+function install_web () {
+echo -e "请确认已经将配置文件配置完毕"
+echo -e "请确定服务端已经布置了web服务"
+echo -e "按下Ctrl+C退出，输入 y 继续"
+read webset
+if [[ $webset == "y" ]]; then
+	wget --no-check-certificate https://raw.githubusercontent.com/EVECloud/AICM/master/AICM_Web.tar.gz -P $backupsave
+	cd $backupsave
+	tar -zxf AICM_Web.tar.gz
+fi
 }
 
 
@@ -40,6 +51,7 @@ echo -e "$dls/" >> /usr/bin/AICM/AICM_DL.txt
 echo -e "\033[41m####AICloudMirror Installer####\033[0m"
 echo -e "s:安装AICM服务端"
 echo -e "c:安装AICM客户端"
+echo -e "w:安装AICM Web端 (实验室功能)"
 #echo -e "add:添加服务端下载任务"
 echo -e "Ctrl+C 退出安装"
 read installdy  
@@ -54,7 +66,7 @@ case $installdy in
 	   ;;
 	s)
 	   crontab_installer
-	   wget -c wget --no-check-certificate https://raw.githubusercontent.com/EVECloud/AICM/master/AICM_Server.sh -P /usr/bin/AICM/AICM_Server.sh
+	   wget --no-check-certificate https://raw.githubusercontent.com/EVECloud/AICM/master/AICM_Server.sh -P /usr/bin/AICM/AICM_Server.sh
 	   set_time_d
 	   touch /usr/bin/AICM/AICM_DL.txt
 	   lastdy
@@ -62,6 +74,9 @@ case $installdy in
 #	add)
 #	   set_dl
 #	   ;;
+    w)
+	   install_web
+	   ;;
 	*)
 	   echo -e "请输入正确选项"
 	   ;;
