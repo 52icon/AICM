@@ -15,7 +15,7 @@ fi
 
 function BACKUPFILEBYDENGYU () {
 if [[ $targzpasswdonoffpack == "yes" ]]; then
-	tar -czf - $filedir/$DengYu.tar.gz | openssl aes-256-cfb8 -salt -k $targzpasswd -out $DengYu.tar.gz
+	tar -czf - $filedir | openssl aes-256-cfb8 -salt -k $targzpasswd -out $DengYu.tar.gz
 	else
 	tar czf $filedir/$DengYu.tar.gz $filedir
 fi
