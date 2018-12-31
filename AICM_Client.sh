@@ -27,7 +27,7 @@ function upupup () {
 lftp -u ${DYSFTPUSER},${DYSFTPPASSWD} sftp://${AICMSERVERIP}:${SFTPPORT} <<EOF
 cd ${DYSFTPBUDIR}/
 lcd ${aicmtmpdir}
-put ${DengYu}*
+mput ${DengYu}*
 by
 EOF
 

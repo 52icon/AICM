@@ -25,7 +25,10 @@ case $installdy in
 	   crontab_installer
        wget --no-check-certificate https://raw.githubusercontent.com/EwigeveMicca/AICM/master/AICM_Client.sh -P /usr/bin/AICM/
        wget --no-check-certificate https://raw.githubusercontent.com/EwigeveMicca/AICM/master/AICM.cfg -P /usr/bin/AICM/
+	   chmod 777 /usr/bin/AICM/AICM_Client.sh
+	   mkdir /usr/bin/AICM/tmp
 	   set_time_u
+	   echo -e ”安装完成 现在你可能需要配置/usr/bin/AICM/AICM.cfg“
 	   
 	   ;;
 #	s)
