@@ -23,8 +23,8 @@ read installdy
 case $installdy in
 	I)
 	   crontab_installer
-       wget --no-check-certificate https://raw.githubusercontent.com/EwigeveMicca/AICM/master/AICM_Client.sh -P /usr/bin/AICM/AICM_Client.sh
-       wget --no-check-certificate https://raw.githubusercontent.com/EwigeveMicca/AICM/master/AICM.cfg -P /usr/bin/AICM/AICM.cfg
+       wget --no-check-certificate https://raw.githubusercontent.com/EwigeveMicca/AICM/master/AICM_Client.sh -P /usr/bin/AICM/
+       wget --no-check-certificate https://raw.githubusercontent.com/EwigeveMicca/AICM/master/AICM.cfg -P /usr/bin/AICM/
 	   set_time_u
 	   
 	   ;;
