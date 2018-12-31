@@ -5,14 +5,12 @@ source /usr/bin/AICM/AICM.cfg
 
 function BACKUPSQLBYDENGYU () {
 mysqldump -u $sqluser -p$sqlpasswd $sqlname > $DengYu.sql
-mv $DengYu.sql $webdir/$DengYu.sql
+mv $DengYu.sql $aicmtmpdir/$DengYu.sql
 if [[ $targzpasswdonoffpack == "yes" ]]; then
-	tar -czf - $webdir/$DengYu.sql | openssl aes-256-cfb8 -salt -k $targzpasswd -out $webdir/$DengYu.sql.tar.gz
+	tar -czf - $aicmtmpdir/$DengYu.sql | openssl aes-256-cfb8 -salt -k $targzpasswd -out $aicmtmpdir/$DengYu.sql.tar.gz
 	else
-	tar czf $webdir/$DengYu.sql.tar.gz $webdir/$DengYu.sql	
+	tar czf $aicmtmpdir/$DengYu.sql.tar.gz $aicmtmpdir/$DengYu.sql	
 fi
-sleep $sleeptime
-rm -f $webdir/$DengYu.sql.tar.gz
 }
 
 function BACKUPFILEBYDENGYU () {
@@ -21,10 +19,21 @@ if [[ $targzpasswdonoffpack == "yes" ]]; then
 	else
 	tar czf $filedir/$DengYu.tar.gz $filedir
 fi
-mv $DengYu.tar.gz $webdir/$DengYu.tar.gz
-sleep $sleeptime
-rm -f $webdir/$DengYu.tar.gz
+mv $DengYu.tar.gz $aicmtmpdir/$DengYu.tar.gz
 }
+
+
+function upupup () {
+lftp -u ${DYSFTPUSER},${DYSFTPPASSWD} sftp://${AICMSERVERIP}:${SFTPPORT} <<EOF
+cd ${DYSFTPBUDIR}/
+lcd ${aicmtmpdir}
+put ${DengYu}*
+by
+EOF
+
+rm -rf ${aicmtmpdir}/${DengYu}*
+}
+
 
 if [[ $backupsqlservicedengyu == "yes" ]]; then
     BACKUPSQLBYDENGYU
@@ -37,5 +46,5 @@ if [[ $backupfileservicedengyu == "yes" ]]; then
     else
     echo "$DengYuriver[AICM] FileBakcup任务未激活" >> /usr/bin/AICM/AICM.log
 fi
-
+upupup
 echo "$DengYuriver[AICM] 所有任务执行完毕" >> /usr/bin/AICM/AICM.log
