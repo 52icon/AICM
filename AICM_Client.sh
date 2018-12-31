@@ -19,7 +19,7 @@ if [[ $targzpasswdonoffpack == "yes" ]]; then
 	else
 	tar czf $filedir/$DengYu.tar.gz $filedir
 fi
-mv $DengYu.tar.gz $aicmtmpdir/$DengYu.tar.gz
+mv $filedir/$DengYu.tar.gz $aicmtmpdir/$DengYu.tar.gz
 }
 
 
