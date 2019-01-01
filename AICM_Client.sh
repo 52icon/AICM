@@ -9,7 +9,8 @@ mv $DengYu.sql $aicmtmpdir/$DengYu.sql
 if [[ $targzpasswdonoffpack == "yes" ]]; then
 	tar -czf - $aicmtmpdir/$DengYu.sql | openssl aes-256-cfb8 -salt -k $targzpasswd -out $aicmtmpdir/$DengYu.sql.tar.gz
 	else
-	tar czf $aicmtmpdir/$DengYu.sql.tar.gz $aicmtmpdir/$DengYu.sql	
+	tar czf $aicmtmpdir/$DengYu.sql.tar.gz $aicmtmpdir/$DengYu.sql
+    rm -rf $aicmtmpdir/$DengYu.sql	
 fi
 }
 
