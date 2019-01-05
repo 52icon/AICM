@@ -9,6 +9,10 @@ function set_time_u () {
 echo -e "请输入客户端开始压缩时间"
 echo -e "依照Crontab的表达式"
 echo -e "不懂请百度 Google Bing" 
+echo -e "举个栗子"
+echo -e ""30 2 * * *" #每天凌晨2:30执行备份"
+echo -e ""0 2 * * 1" #每周一凌晨2:00执行备份"
+echo -e ""*/60 * * * * " #每小时执行备份"
 read time_u
 echo -e "$time_u root /usr/bin/AICM/AICM_Client.sh >> /usr/bin/AICM/AICM.log" >> /etc/crontab
 }
