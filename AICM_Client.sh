@@ -7,18 +7,18 @@ function BACKUPSQLBYDENGYU () {
 mysqldump -u $sqluser -p$sqlpasswd $sqlname > $DengYu.sql
 mv $DengYu.sql $aicmtmpdir/$DengYu.sql
 if [[ $targzpasswdonoffpack == "yes" ]]; then
-	tar -czf - $aicmtmpdir/$DengYu.sql | openssl aes-256-cfb8 -salt -k $targzpasswd -out $aicmtmpdir/$DengYu.sql.tar.gz
+	tar --warning=no-file-changed -czf - $aicmtmpdir/$DengYu.sql | openssl aes-256-cfb8 -salt -k $targzpasswd -out $aicmtmpdir/$DengYu.sql.tar.gz
 	else
-	tar czf $aicmtmpdir/$DengYu.sql.tar.gz $aicmtmpdir/$DengYu.sql
+	tar --warning=no-file-changed czf $aicmtmpdir/$DengYu.sql.tar.gz $aicmtmpdir/$DengYu.sql
     rm -rf $aicmtmpdir/$DengYu.sql	
 fi
 }
 
 function BACKUPFILEBYDENGYU () {
 if [[ $targzpasswdonoffpack == "yes" ]]; then
-	tar -czf - $filedir | openssl aes-256-cfb8 -salt -k $targzpasswd -out $aicmtmpdir/$DengYu.tar.gz
+	tar --warning=no-file-changed -czf - $filedir | openssl aes-256-cfb8 -salt -k $targzpasswd -out $aicmtmpdir/$DengYu.tar.gz
 	else
-	tar czf $filedir/$DengYu.tar.gz $filedir
+	tar --warning=no-file-changed czf $filedir/$DengYu.tar.gz $filedir
 fi
 }
 
