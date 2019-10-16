@@ -78,5 +78,5 @@ fi
 }
 
 whowillup
-
+rm -f /usr/bin/AICM/tmp/*
 echo "$DengYuriver[AICM] 所有任务执行完毕" >> /usr/bin/AICM/AICM.log
